@@ -41,6 +41,8 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 
 @property (strong, nonatomic) UIView *keyboardView;
 
+@property (assign, nonatomic) CGRect currentFrame;
+
 @end
 
 
@@ -220,7 +222,10 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     if (CGRectIsNull(keyboardEndFrame)) {
         return;
     }
-
+    if (CGRectEqualToRect(self.currentFrame, keyboardEndFrame)) {
+        return;
+    }
+    self.currentFrame = keyboardEndFrame;
     UIViewAnimationCurve animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     NSInteger animationCurveOption = (animationCurve << 16);
 
