@@ -43,6 +43,12 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 
 #pragma mark - Initialization
 
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+    [self bringSubviewToFront:self.contentView];
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
